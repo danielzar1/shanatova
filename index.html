@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-TqV7L12rDxbaeBYzBZn5M/K/qxjRhLALrMKcuBWQjJo='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-aeQobHuDEEXDA65X26K+V+GyRYY0v5LDrcAiyohK2oQ='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#241738">
@@ -68,6 +68,10 @@
   #cover .eyebrow{color:var(--honey-light)}
   #cover h1{font-family:var(--display);font-weight:300;font-style:italic;font-size:clamp(56px,15vw,104px);line-height:.95;letter-spacing:-.01em;font-variation-settings:"opsz" 144;text-shadow:0 2px 24px rgba(36,23,56,.35)}
   #cover .hebrew{font-family:var(--hand);font-weight:700;font-size:clamp(44px,12vw,80px);line-height:1;color:var(--honey-light);direction:rtl}
+  .whoami{display:flex;gap:8px;width:100%;max-width:340px}
+  .whoami input{flex:1;min-width:0;padding:12px 14px;border-radius:999px;border:1px solid rgba(255,246,229,.4);background:rgba(36,23,56,.28);color:var(--cream);font:inherit;font-size:16px}
+  .whoami input::placeholder{color:rgba(255,246,229,.55)}
+  .whoami button{padding:12px 16px;border-radius:999px;border:0;background:rgba(255,246,229,.92);color:var(--night);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
   #cover .dear{font-family:var(--display);font-style:italic;font-size:clamp(22px,5vw,30px);opacity:.95}
   #cover .lede{color:rgba(255,246,229,.85)}
   .count{display:flex;gap:14px;font-variant-numeric:tabular-nums;margin-top:6px}
@@ -186,6 +190,10 @@
     <h1>Shana Tova</h1>
     <div class="hebrew">שנה טובה ומתוקה</div>
     <p class="dear" id="dear" hidden></p>
+    <form class="whoami" id="whoami" hidden autocomplete="off">
+      <input id="whoami-name" placeholder="Your first name" maxlength="40" aria-label="Your first name">
+      <button type="submit">Make it mine</button>
+    </form>
     <p class="lede" id="cover-lede">A sweet new year, with love from everyone at Universal Recycling Company.</p>
     <div class="count" id="count" aria-label="Countdown to Rosh Hashanah">
       <div><b id="c-d">–</b><span>days</span></div>
@@ -299,6 +307,10 @@ const q = new URLSearchParams(location.search);
 const clean = (s,n) => (s||'').replace(/[<>]/g,'').trim().slice(0,n);
 const TO = clean(q.get('to'),40), FROM = clean(q.get('from'),40), WISH = clean(q.get('wish'),220);
 if (TO) { $('#dear').textContent = `Dear ${TO},`; $('#dear').hidden = false; }
+else {
+  $('#whoami').hidden = false;
+  $('#whoami').addEventListener('submit', e => { e.preventDefault(); const n = clean($('#whoami-name').value, 40); if (n) location.href = location.origin + location.pathname + '?to=' + encodeURIComponent(n); });
+}
 if (WISH) { $('#wish-text').textContent = WISH; $('#wish-from').textContent = FROM ? `A note from ${FROM}` : 'A note for you'; $('#wish').hidden = false; }
 document.title = TO ? `Shana Tova, ${TO}` : 'Shana Tova 5787';
 if (TO) $('#cap-dip').textContent = `Sweet, ${TO}. May your year be this sticky with good things.`;
