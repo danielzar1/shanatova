@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qth+fAd5a/+7KEdD4jpr8hsnb5jDZC5JTZPdjDUqU5M='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#241738">
+<meta name="description" content="Dip the apple, sound the shofar, open the pomegranate. A sweet new year from Daniel and Jenna.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shana Tova 5787">
+<meta property="og:description" content="Dip the apple, sound the shofar, open the pomegranate. A sweet new year from Daniel and Jenna.">
+<meta property="og:image" content="https://shanatova.universalrecycling.co.za/og-personal.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%8E%3C/text%3E%3C/svg%3E">
+<title>Shana Tova 5787</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,600&family=Amatic+SC:wght@400;700&family=Nunito:ital,wght@0,400;0,600;0,800;1,400&display=swap">
+<style>
+  :root{
+    --night:#241738; --plum:#3B2352; --dawn:#F7B267; --dawn-pink:#E98A7B;
+    --honey:#F2A900; --honey-light:#FFD36E; --honey-deep:#C97C00;
+    --apple:#D62839; --apple-deep:#8E1526;
+    --pome:#A4133C; --pome-light:#E63963;
+    --cream:#FFF6E5; --cream-deep:#F3E3C3; --paper:#FFFBF2;
+    --ink:#2A1E14; --ink-soft:#6B5744; --ink-faint:#A38F78;
+    --leaf:#4C8C4A; --urc:#1F3F8F;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --hand:"Amatic SC", "Comic Sans MS", cursive;
+    --body:"Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  img{max-width:100%}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{text-wrap:balance;margin:0}
+  p{margin:0}
+  button{font:inherit;cursor:pointer}
+  :focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+
+  /* ---------- progress bar ---------- */
+  .sweet{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 12px;background:rgba(36,23,56,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--cream);font-size:13px;letter-spacing:.04em;text-transform:uppercase;font-weight:800;transform:translateY(-110%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .sweet.show{transform:none}
+  .sweet .dots{display:flex;gap:6px}
+  .sweet .dot{width:14px;height:14px;border-radius:50%;background:rgba(255,246,229,.18);border:2px solid rgba(255,246,229,.35);transition:all .4s}
+  .sweet .dot.on{background:var(--honey);border-color:var(--honey-light);box-shadow:0 0 12px var(--honey)}
+  .sweet .label{min-width:0}
+
+  /* ---------- scenes ---------- */
+  .scene{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:72px 20px 56px;overflow:hidden}
+  .inner{width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;position:relative;z-index:2}
+  .eyebrow{font-family:var(--hand);font-size:26px;letter-spacing:.06em;color:var(--honey-deep);line-height:1}
+  .scene h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,7vw,42px);line-height:1.08;font-variation-settings:"opsz" 96}
+  .lede{color:var(--ink-soft);max-width:38ch}
+  .caption{font-family:var(--hand);font-size:30px;line-height:1.05;color:var(--pome);min-height:1.1em;opacity:0;transform:translateY(6px);transition:all .6s}
+  .caption.show{opacity:1;transform:none}
+
+  /* ---------- cover ---------- */
+  #cover{background:linear-gradient(180deg,var(--night) 0%,var(--plum) 38%,var(--dawn-pink) 70%,var(--dawn) 100%);background-size:100% 260%;background-position:0 0;animation:dawn 6s cubic-bezier(.4,0,.2,1) 0.4s forwards;color:var(--cream);padding-top:40px}
+  @keyframes dawn{to{background-position:0 100%}}
+  #stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  #sun{position:absolute;left:50%;bottom:-18vh;width:56vh;height:56vh;max-width:520px;max-height:520px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#FFE7A3 0%,#FFC85C 45%,rgba(255,200,92,0) 72%);transform:translate(-50%,40%);opacity:0;animation:sunrise 6s cubic-bezier(.4,0,.2,1) 1.2s forwards;pointer-events:none}
+  @keyframes sunrise{to{transform:translate(-50%,0);opacity:.95}}
+  #cover .eyebrow{color:var(--honey-light)}
+  #cover h1{font-family:var(--display);font-weight:300;font-style:italic;font-size:clamp(56px,15vw,104px);line-height:.95;letter-spacing:-.01em;font-variation-settings:"opsz" 144;text-shadow:0 2px 24px rgba(36,23,56,.35)}
+  #cover .hebrew{font-family:var(--hand);font-weight:700;font-size:clamp(44px,12vw,80px);line-height:1;color:var(--honey-light);direction:rtl}
+  .whoami{display:flex;gap:8px;width:100%;max-width:340px}
+  .whoami input{flex:1;min-width:0;padding:12px 14px;border-radius:999px;border:1px solid rgba(255,246,229,.4);background:rgba(36,23,56,.28);color:var(--cream);font:inherit;font-size:16px}
+  .whoami input::placeholder{color:rgba(255,246,229,.55)}
+  .whoami button{padding:12px 16px;border-radius:999px;border:0;background:rgba(255,246,229,.92);color:var(--night);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  #cover .dear{font-family:var(--display);font-style:italic;font-size:clamp(22px,5vw,30px);opacity:.95}
+  #cover .lede{color:rgba(255,246,229,.85)}
+  .count{display:flex;gap:14px;font-variant-numeric:tabular-nums;margin-top:6px}
+  .count div{display:flex;flex-direction:column;align-items:center;min-width:56px;padding:8px 6px;border-radius:12px;background:rgba(36,23,56,.28);border:1px solid rgba(255,246,229,.18)}
+  .count b{font-family:var(--display);font-weight:600;font-size:30px;line-height:1}
+  .count span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-top:4px}
+  .count-note{font-family:var(--hand);font-size:24px;color:var(--honey-light);line-height:1}
+  .begin{margin-top:14px;padding:14px 26px;border-radius:999px;border:0;background:var(--honey);color:var(--ink);font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;box-shadow:0 12px 30px -10px rgba(201,124,0,.6);animation:bob 2s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(6px)}}
+
+  /* ---------- honey scene ---------- */
+  #dip{background:linear-gradient(180deg,var(--dawn) 0%,var(--cream) 30%)}
+  #honey{width:min(100%,440px);aspect-ratio:4/5;max-height:560px;touch-action:pan-y;display:block;border-radius:24px;cursor:grab}
+  #honey.grabbing{cursor:grabbing}
+  .bees{position:absolute;left:50%;top:0;width:520px;height:100%;transform:translateX(-50%);pointer-events:none;z-index:3}
+  .bee{display:none;position:absolute;width:34px;height:26px;z-index:3;pointer-events:none;offset-rotate:auto;animation:fly linear infinite}
+  .bee svg{width:100%;height:100%;display:block}
+  .bee .wing{transform-origin:center;animation:flap .12s linear infinite alternate}
+  @keyframes flap{to{transform:scaleY(.35)}}
+  @keyframes fly{to{offset-distance:100%}}
+  .bee.b1{offset-path:path("M -40 120 C 120 20, 260 220, 420 90 C 520 30, 380 -40, 260 60 C 140 160, 20 260, -40 120");animation-duration:22s}
+  .bee.b2{offset-path:path("M 520 400 C 380 300, 200 520, 40 380 C -60 300, 120 240, 260 330 C 400 420, 560 500, 520 400");animation-duration:27s;animation-delay:-9s;width:26px;height:20px}
+  .bee.b3{offset-path:path("M 200 -20 C 300 120, 100 220, 240 320 C 340 400, 460 260, 380 140 C 300 20, 120 -80, 200 -20");animation-duration:31s;animation-delay:-17s;width:22px;height:17px}
+
+  /* ---------- shofar scene ---------- */
+  #call{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-deep) 100%)}
+  .horn-wrap{position:relative;width:min(100%,420px);aspect-ratio:16/10}
+  .horn-wrap svg{width:100%;height:100%;display:block;overflow:visible}
+  .ring{fill:none;stroke:var(--honey);stroke-width:3;opacity:0;transform-origin:296px 58px;transform-box:view-box}
+  .playing .ring{animation:ring 1.4s ease-out infinite}
+  .playing .ring:nth-child(2){animation-delay:.35s}
+  .playing .ring:nth-child(3){animation-delay:.7s}
+  .playing .ring:nth-child(4){animation-delay:1.05s}
+  @keyframes ring{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(2.6)}}
+  .playing .horn{animation:shake .12s linear infinite}
+  @keyframes shake{25%{transform:translate(1px,-1px)}75%{transform:translate(-1px,1px)}}
+  .calls{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+  .call-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border-radius:14px;border:2px solid var(--honey-deep);background:var(--paper);color:var(--ink);text-align:left;transition:transform .12s,background .2s;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  .call-btn:active{transform:scale(.97);background:var(--honey-light)}
+  .call-btn b{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.1}
+  .call-btn span{font-size:12px;color:var(--ink-soft);letter-spacing:.02em}
+  .call-btn.hold{border-style:dashed}
+  /* ---------- pomegranate scene ---------- */
+  #seeds{background:linear-gradient(180deg,var(--cream-deep) 0%,var(--cream) 100%)}
+  #pome{width:min(100%,460px);height:360px;display:block;touch-action:manipulation;cursor:pointer}
+
+  /* ---------- blessing scene ---------- */
+  #bless{background:linear-gradient(180deg,var(--cream) 0%,#F9E8C7 100%)}
+  .card{width:100%;background:var(--paper);border-radius:6px;padding:34px 28px 30px;box-shadow:0 30px 60px -30px rgba(42,30,20,.35),0 2px 0 var(--cream-deep);position:relative}
+  .card::before{content:"";position:absolute;inset:10px;border:1px solid var(--cream-deep);border-radius:3px;pointer-events:none}
+  .blessing{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(21px,4.6vw,25px);line-height:1.4;font-variation-settings:"opsz" 30}
+  .blessing strong{font-style:normal;font-weight:600;color:var(--pome)}
+  .signoff{font-family:var(--hand);font-size:34px;line-height:1;color:var(--honey-deep);margin-top:18px}
+  .renew{color:var(--ink-soft);font-size:15.5px;max-width:44ch;font-style:italic}
+  .logo{width:124px;height:auto;display:block;margin:6px auto 0;filter:drop-shadow(0 10px 18px rgba(26,59,110,.25))}
+  .wish{font-family:var(--hand);font-size:30px;line-height:1.1;color:var(--ink);background:#FFF1B8;padding:16px 18px 14px;transform:rotate(-1.5deg);box-shadow:0 8px 20px -10px rgba(42,30,20,.4);max-width:100%;overflow-wrap:anywhere}
+  .wish small{display:block;font-family:var(--body);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;font-weight:800}
+
+  footer{background:var(--night);color:rgba(255,246,229,.55);text-align:center;font-size:13px;padding:36px 20px 32px;letter-spacing:.04em}
+  footer b{color:var(--honey-light);font-family:var(--hand);font-size:22px;font-weight:400;letter-spacing:.06em}
+
+  /* ---------- toast + confetti ---------- */
+  .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120%);z-index:30;background:var(--paper);color:var(--ink);border-radius:999px;padding:12px 20px;box-shadow:0 20px 40px -12px rgba(42,30,20,.5);font-weight:800;display:flex;align-items:center;gap:10px;transition:transform .5s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 32px)}
+  .toast.show{transform:translate(-50%,0)}
+  .toast .t{font-family:var(--hand);font-size:24px;line-height:1;color:var(--pome)}
+  #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:25}
+
+  @media (max-width:480px){
+    body{font-size:16px}
+    .scene{padding:60px 18px 40px}
+    .inner{gap:14px}
+    .eyebrow{font-size:23px}
+    .lede{font-size:15.5px}
+    .caption{font-size:26px}
+    #cover{padding-top:28px}
+    .count{width:100%;max-width:320px;gap:8px}
+    .count div{min-width:0;flex:1;padding:8px 4px}
+    .count b{font-size:26px}
+    .card{padding:26px 20px 22px}
+    .blessing{font-size:20px}
+    .signoff{font-size:30px}
+    .wish{font-size:26px}
+    .renew{font-size:15px}
+    .calls{gap:8px}
+    .call-btn{padding:10px 12px}
+    .call-btn b{font-size:18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #cover{animation:none;background-position:0 100%}
+    #sun{animation:none;opacity:.95;transform:translate(-50%,0)}
+    .bee,.begin,.playing .horn{animation:none}
+    html{scroll-behavior:auto}
+  }
+  @supports (offset-path: path("M0 0 L1 1")){ .bee{display:block} }
+  @media (min-width:700px){
+    .scene{padding-top:88px}
+    .calls{grid-template-columns:repeat(4,1fr)}
+  }
+</style>
+</head>
+<body>
+
+
+<!-- progress -->
+<div class="sweet" id="sweet" aria-live="polite">
+  <div class="dots"><i class="dot" id="d-dip"></i><i class="dot" id="d-call"></i><i class="dot" id="d-seed"></i></div>
+  <div class="label" id="sweet-label">Three sweet things to do</div>
+</div>
+
+<!-- COVER -->
+<section class="scene" id="cover">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div id="sun" aria-hidden="true"></div>
+  <div class="inner">
+    <div class="eyebrow">ראש השנה · 5787</div>
+    <h1>Shana Tova</h1>
+    <div class="hebrew">שנה טובה ומתוקה</div>
+    <p class="dear" id="dear" hidden></p>
+    <form class="whoami" id="whoami" hidden autocomplete="off">
+      <input id="whoami-name" placeholder="Your first name" maxlength="40" aria-label="Your first name">
+      <button type="submit">Make it mine</button>
+    </form>
+    <p class="lede" id="cover-lede">A sweet new year, with love from Daniel and Jenna.</p>
+    <div class="count" id="count" aria-label="Countdown to Rosh Hashanah">
+      <div><b id="c-d">–</b><span>days</span></div>
+      <div><b id="c-h">–</b><span>hours</span></div>
+      <div><b id="c-m">–</b><span>mins</span></div>
+      <div><b id="c-s">–</b><span>secs</span></div>
+    </div>
+    <div class="count-note" id="count-note">until the year 5787 begins</div>
+    <button class="begin" id="begin">Tap to begin, sound on ↓</button>
+  </div>
+</section>
+
+<!-- DIP -->
+<section class="scene" id="dip">
+  <div class="bees">
+  <div class="bee b1" aria-hidden="true"><svg viewBox="0 0 34 26"><ellipse class="wing" cx="14" cy="7" rx="7" ry="5" fill="#fff" opacity=".8"/><ellipse class="wing" cx="22" cy="7" rx="6" ry="4.5" fill="#fff" opacity=".8"/><ellipse cx="18" cy="15" rx="12" ry="8" fill="#F2A900"/><path d="M11 8v14M16 7v16M21 7v16" stroke="#2A1E14" stroke-width="3"/><circle cx="7" cy="14" r="5" fill="#2A1E14"/></svg></div>
+  <div class="bee b2" aria-hidden="true"><svg viewBox="0 0 34 26"><ellipse class="wing" cx="14" cy="7" rx="7" ry="5" fill="#fff" opacity=".8"/><ellipse class="wing" cx="22" cy="7" rx="6" ry="4.5" fill="#fff" opacity=".8"/><ellipse cx="18" cy="15" rx="12" ry="8" fill="#F2A900"/><path d="M11 8v14M16 7v16M21 7v16" stroke="#2A1E14" stroke-width="3"/><circle cx="7" cy="14" r="5" fill="#2A1E14"/></svg></div>
+  <div class="bee b3" aria-hidden="true"><svg viewBox="0 0 34 26"><ellipse class="wing" cx="14" cy="7" rx="7" ry="5" fill="#fff" opacity=".8"/><ellipse class="wing" cx="22" cy="7" rx="6" ry="4.5" fill="#fff" opacity=".8"/><ellipse cx="18" cy="15" rx="12" ry="8" fill="#F2A900"/><path d="M11 8v14M16 7v16M21 7v16" stroke="#2A1E14" stroke-width="3"/><circle cx="7" cy="14" r="5" fill="#2A1E14"/></svg></div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow">One · the apple</div>
+    <h2>Dip the apple in the honey</h2>
+    <p class="lede">Drag the apple down into the jar and lift it out again. Go on, get it properly sticky.</p>
+    <canvas id="honey" aria-label="Drag the apple into the honey jar"></canvas>
+    <p class="caption" id="cap-dip">Sweet. May your year be this sticky with good things.</p>
+  </div>
+</section>
+
+<!-- SHOFAR -->
+<section class="scene" id="call">
+  <div class="inner">
+    <div class="eyebrow">Two · the shofar</div>
+    <h2>Sound the shofar</h2>
+    <p class="lede">A hundred blasts are sounded on Rosh Hashanah. Here are the four. Tap one, or press and hold the last for a great blast.</p>
+    <div class="horn-wrap" id="horn-wrap">
+      <svg viewBox="0 0 320 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#4A2C14"/><stop offset=".45" stop-color="#8C5A2E"/><stop offset=".8" stop-color="#D9B48A"/><stop offset="1" stop-color="#F3E1C6"/>
+          </linearGradient>
+          <radialGradient id="bell" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2A1E14"/><stop offset="1" stop-color="#6B4322"/></radialGradient>
+        </defs>
+        <g><circle class="ring" cx="296" cy="58" r="30"/><circle class="ring" cx="296" cy="58" r="30"/><circle class="ring" cx="296" cy="58" r="30"/><circle class="ring" cx="296" cy="58" r="30"/></g>
+        <g class="horn">
+          <path d="M18 152 C 50 150, 105 156, 160 128 C 210 102, 245 80, 282 38 L 302 68 C 262 98, 236 118, 194 146 C 150 176, 70 172, 18 166 Z" fill="url(#hg)"/>
+          <path d="M60 153 C 64 158, 64 164, 60 168 M96 153 C 100 158, 100 165, 96 170 M132 143 C 138 148, 138 156, 134 162 M168 126 C 175 131, 176 139, 172 146 M204 108 C 212 113, 214 121, 210 128 M240 84 C 249 89, 252 97, 248 104" stroke="#3B2314" stroke-width="2.2" fill="none" opacity=".5" stroke-linecap="round"/>
+          <ellipse cx="293" cy="53" rx="13" ry="20" transform="rotate(-36 293 53)" fill="url(#bell)"/>
+          <ellipse cx="18" cy="159" rx="4" ry="7" fill="#2A1E14"/>
+        </g>
+      </svg>
+    </div>
+    <div class="calls">
+      <button class="call-btn" data-call="tekiah"><b>Tekiah</b><span>one long call</span></button>
+      <button class="call-btn" data-call="shevarim"><b>Shevarim</b><span>three broken sighs</span></button>
+      <button class="call-btn" data-call="teruah"><b>Teruah</b><span>nine quick blasts</span></button>
+      <button class="call-btn hold" id="gedolah"><b>Tekiah Gedolah</b><span>press and hold</span></button>
+    </div>
+    <p class="caption" id="cap-call">You heard the call. Wake up, it's a new year.</p>
+  </div>
+</section>
+
+<!-- POMEGRANATE -->
+<section class="scene" id="seeds">
+  <div class="inner">
+    <div class="eyebrow">Three · the pomegranate</div>
+    <h2>Open the pomegranate</h2>
+    <p class="lede">Tradition says a pomegranate holds 613 seeds, one for every mitzvah. Tap it and see what they spell.</p>
+    <canvas id="pome" aria-label="Tap the pomegranate"></canvas>
+    <p class="caption" id="cap-seed">613 seeds. May your merits be as many.</p>
+  </div>
+</section>
+
+<!-- BLESSING -->
+<section class="scene" id="bless">
+  <div class="inner">
+    <div class="eyebrow">From the two of us</div>
+    <div class="card">
+      <p class="blessing">Wishing you and your family a blessed Yom Tov filled with good health, joy, happiness, love, peace and all Hashem's richest blessings.<br><br><strong>Shana Tova U'Metuka. Chag Sameach.</strong></p>
+      <p class="signoff" id="signoff">with love, Daniel and Jenna</p>
+    </div>
+    <div class="wish" id="wish" hidden><small id="wish-from">A note from</small><span id="wish-text"></span></div>
+    
+    
+  </div>
+</section>
+
+<footer><b>שנה טובה ומתוקה</b><br>5787 · with love from Daniel and Jenna</footer>
+
+<div class="toast" id="toast"><span class="t" id="toast-t"></span><span id="toast-m"></span></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+'use strict';
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    const rr = Array.isArray(r) ? r : [r, r, r, r]; const [tl, tr, br, bl] = rr.length === 4 ? rr : [rr[0], rr[0], rr[0], rr[0]];
+    this.moveTo(x + tl, y); this.lineTo(x + w - tr, y); this.arcTo(x + w, y, x + w, y + tr, tr);
+    this.lineTo(x + w, y + h - br); this.arcTo(x + w, y + h, x + w - br, y + h, br);
+    this.lineTo(x + bl, y + h); this.arcTo(x, y + h, x, y + h - bl, bl);
+    this.lineTo(x, y + tl); this.arcTo(x, y, x + tl, y, tl); this.closePath(); return this;
+  };
+}
+const $ = s => document.querySelector(s);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const lerp = (a,b,t) => a+(b-a)*t;
+
+/* ================= personalisation from the link ================= */
+const q = new URLSearchParams(location.search);
+const clean = (s,n) => (s||'').replace(/[<>]/g,'').trim().slice(0,n);
+const TO = clean(q.get('to'),40), FROM = clean(q.get('from'),40), WISH = clean(q.get('wish'),220);
+if (TO) { $('#dear').textContent = `Dear ${TO},`; $('#dear').hidden = false; }
+else {
+  $('#whoami').hidden = false;
+  $('#whoami').addEventListener('submit', e => { e.preventDefault(); const n = clean($('#whoami-name').value, 40); if (n) location.href = location.origin + location.pathname + '?to=' + encodeURIComponent(n); });
+}
+if (WISH) { $('#wish-text').textContent = WISH; $('#wish-from').textContent = FROM ? `A note from ${FROM}` : 'A note for you'; $('#wish').hidden = false; }
+document.title = TO ? `Shana Tova, ${TO}` : 'Shana Tova 5787';
+if (TO) $('#cap-dip').textContent = `Sweet, ${TO}. May your year be this sticky with good things.`;
+
+/* ================= countdown to 5787 ================= */
+const START = new Date('2026-09-11T18:05:00+02:00'); // sunset, Johannesburg, erev Rosh Hashanah
+const END = new Date('2026-09-13T19:10:00+02:00');
+function tick(){
+  const now = Date.now();
+  if (now >= START && now <= END) { $('#count').hidden = true; $('#count-note').textContent = 'It\'s here. Happy 5787!'; return; }
+  if (now > END) { $('#count').hidden = true; $('#count-note').textContent = 'Welcome to 5787'; return; }
+  let s = Math.floor((START-now)/1000);
+  const d = Math.floor(s/86400); s-=d*86400; const h=Math.floor(s/3600); s-=h*3600; const m=Math.floor(s/60); s-=m*60;
+  $('#c-d').textContent=d; $('#c-h').textContent=String(h).padStart(2,'0'); $('#c-m').textContent=String(m).padStart(2,'0'); $('#c-s').textContent=String(s).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+/* ================= stars + parallax ================= */
+(() => {
+  const cv = $('#stars'), ctx = cv.getContext('2d');
+  let W,H,stars=[], px=0, py=0, tx=0, ty=0;
+  function size(){ const r=cv.parentElement.getBoundingClientRect(); W=cv.width=r.width; H=cv.height=r.height;
+    stars = Array.from({length:140},()=>({x:Math.random()*W,y:Math.random()*H*0.75,r:Math.random()*1.6+.4,p:Math.random()*6.28,s:Math.random()*.8+.3,z:Math.random()*.6+.4})); }
+  size(); addEventListener('resize',size);
+  addEventListener('pointermove',e=>{ tx=(e.clientX/innerWidth-.5)*2; ty=(e.clientY/innerHeight-.5)*2; });
+  addEventListener('deviceorientation',e=>{ if(e.gamma==null) return; tx=clamp(e.gamma/30,-1,1); ty=clamp((e.beta-45)/30,-1,1); });
+  let t0=performance.now();
+  function draw(now){
+    const t=(now-t0)/1000, fade = clamp(1 - (t-1.5)/6, .18, 1);
+    px=lerp(px,tx,.05); py=lerp(py,ty,.05);
+    ctx.clearRect(0,0,W,H);
+    for(const s of stars){ const a=(Math.sin(t*s.s*2+s.p)*.4+.6)*fade*.95;
+      ctx.beginPath(); ctx.arc(s.x+px*14*s.z, s.y+py*10*s.z, s.r, 0, 6.28); ctx.fillStyle=`rgba(255,240,210,${a})`; ctx.fill(); }
+    if (!reduced || t<1) { if (visible.get('cover') === false) setTimeout(() => requestAnimationFrame(draw), 500); else requestAnimationFrame(draw); }
+  }
+  requestAnimationFrame(draw);
+})();
+
+/* ================= sound ================= */
+const Sound = (() => {
+  let ctx, master, noiseBuf;
+  function init(){
+    if (ctx) return ctx;
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = .9; master.connect(ctx.destination);
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate*2, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0); for (let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+    return ctx;
+  }
+  function resume(){ init(); if (ctx.state==='suspended') ctx.resume(); return ctx; }
+  // one shofar note. dur=Infinity sustains until stop() is called.
+  function note(t0, dur, {low=349, high=523, jump=.35}={}){
+    const o=ctx.createOscillator(), o2=ctx.createOscillator();
+    o.type='sawtooth'; o2.type='triangle';
+    const f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=1500; f.Q.value=3;
+    const pk=ctx.createBiquadFilter(); pk.type='peaking'; pk.frequency.value=950; pk.gain.value=9; pk.Q.value=2.5;
+    const g=ctx.createGain(); g.gain.value=0;
+    const lfo=ctx.createOscillator(); lfo.frequency.value=5.6; const lg=ctx.createGain(); lg.gain.value=0;
+    lfo.connect(lg); lg.connect(o.frequency); lg.connect(o2.frequency);
+    const n=ctx.createBufferSource(); n.buffer=noiseBuf; n.loop=true;
+    const nf=ctx.createBiquadFilter(); nf.type='bandpass'; nf.frequency.value=1800; nf.Q.value=.8;
+    const ng=ctx.createGain(); ng.gain.value=.05; n.connect(nf); nf.connect(ng); ng.connect(g);
+    o.connect(f); o2.connect(f); f.connect(pk); pk.connect(g); g.connect(master);
+    for (const osc of [o,o2]) {
+      osc.frequency.setValueAtTime(low*.94, t0);
+      osc.frequency.exponentialRampToValueAtTime(low, t0+.09);
+      if (dur > jump+.25 && high!==low) { osc.frequency.setValueAtTime(low, t0+jump); osc.frequency.exponentialRampToValueAtTime(high, t0+jump+.1); }
+    }
+    lg.gain.setValueAtTime(0,t0); lg.gain.linearRampToValueAtTime(7, t0+jump+.6);
+    g.gain.setValueAtTime(0,t0); g.gain.linearRampToValueAtTime(.5, t0+.07);
+    o.start(t0); o2.start(t0); lfo.start(t0); n.start(t0);
+    const stopAt = (t) => { g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(.5, t); g.gain.linearRampToValueAtTime(0, t+.14); for (const s of [o,o2,lfo,n]) s.stop(t+.2); };
+    if (isFinite(dur)) stopAt(Math.max(t0+.08, t0+dur-.14));
+    return { stop(){ stopAt(Math.max(ctx.currentTime, t0+.08)); } };
+  }
+  const CALLS = {
+    tekiah:  { len:1.7, play(t){ note(t,1.7,{low:349,high:523,jump:.4}); } },
+    shevarim:{ len:1.8, play(t){ for(let i=0;i<3;i++) note(t+i*.6,.55,{low:392,high:523,jump:.12}); } },
+    teruah:  { len:1.7, play(t){ for(let i=0;i<9;i++) note(t+i*.18,.13,{low:523,high:523,jump:0}); } },
+  };
+  function call(name){ const c=resume(); const t=c.currentTime+.03; CALLS[name].play(t); return CALLS[name].len; }
+  let held=null;
+  function holdStart(){ const c=resume(); if (held) return; held = note(c.currentTime+.02, Infinity, {low:349,high:523,jump:.4}); }
+  function holdStop(){ if (held) { held.stop(); held=null; } }
+  function chime(){ const c=resume(); const t=c.currentTime;
+    [[880,0],[1318,.06],[1760,.12]].forEach(([fr,dl])=>{ const o=c.createOscillator(); o.type='sine'; o.frequency.value=fr; const g=c.createGain(); g.gain.setValueAtTime(0,t+dl); g.gain.linearRampToValueAtTime(.18,t+dl+.02); g.gain.exponentialRampToValueAtTime(.0008,t+dl+1.4); o.connect(g); g.connect(master); o.start(t+dl); o.stop(t+dl+1.5); }); }
+  let lastPlip=-1, lastPlop=-1;
+  function fx(kind, power=1){
+    const c=resume();
+    if (c.state!=='running'){ c.resume().then(()=>play(kind, power)).catch(()=>{}); return; }
+    play(kind, power);
+  }
+  function play(kind, power){
+    const c=ctx; const t=c.currentTime+.005;
+    const tone=(f0,f1,dur,vol,type='sine',at=0)=>{ const o=c.createOscillator(); o.type=type; o.frequency.setValueAtTime(f0,t+at); o.frequency.exponentialRampToValueAtTime(f1,t+at+dur); const g=c.createGain(); g.gain.setValueAtTime(0,t+at); g.gain.linearRampToValueAtTime(vol,t+at+.012); g.gain.exponentialRampToValueAtTime(.0008,t+at+dur+.12); o.connect(g); g.connect(master); o.start(t+at); o.stop(t+at+dur+.2); };
+    const hiss=(f0,f1,dur,vol,q=1.2,at=0)=>{ const n=c.createBufferSource(); n.buffer=noiseBuf; const f=c.createBiquadFilter(); f.type='bandpass'; f.Q.value=q; f.frequency.setValueAtTime(f0,t+at); f.frequency.exponentialRampToValueAtTime(f1,t+at+dur); const g=c.createGain(); g.gain.setValueAtTime(0,t+at); g.gain.linearRampToValueAtTime(vol,t+at+.02); g.gain.exponentialRampToValueAtTime(.0008,t+at+dur); n.connect(f); f.connect(g); g.connect(master); n.start(t+at); n.stop(t+at+dur+.05); };
+    if (kind==='plop'){
+      if (t-lastPlop<.3) return; lastPlop=t;
+      const p=clamp(power,.6,1.6);
+      // impact: a crisp high burst a phone speaker reproduces well
+      hiss(4200,1400,.06,.6*p,1.4);
+      // the "bloop": pitch rises then falls, like a real drop into liquid (mid range, clearly audible on phones)
+      const o=c.createOscillator(); o.type='sine';
+      o.frequency.setValueAtTime(380,t); o.frequency.exponentialRampToValueAtTime(1150,t+.11); o.frequency.exponentialRampToValueAtTime(330,t+.24);
+      const g=c.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.7*p,t+.012); g.gain.exponentialRampToValueAtTime(.0008,t+.34);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+.4);
+      // wet gloop, kept in the mid band
+      const o2=c.createOscillator(); o2.type='triangle';
+      o2.frequency.setValueAtTime(900,t); o2.frequency.exponentialRampToValueAtTime(260,t+.22);
+      const bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=5; bp.frequency.setValueAtTime(1100,t); bp.frequency.exponentialRampToValueAtTime(320,t+.24);
+      const g2=c.createGain(); g2.gain.setValueAtTime(0,t); g2.gain.linearRampToValueAtTime(.55*p,t+.01); g2.gain.exponentialRampToValueAtTime(.0008,t+.3);
+      o2.connect(bp); bp.connect(g2); g2.connect(master); o2.start(t); o2.stop(t+.4);
+      // splash of noise in the audible band, then two little bubbles
+      hiss(3000,650,.3,.5*p,.9);
+      tone(1400,600,.07,.3*p,'sine',.14);
+      tone(1000,450,.06,.22*p,'sine',.23);
+      // deep thump underneath for desktops and headphones (phone speakers ignore it)
+      tone(170,48,.34,.9*p);
+    }
+    else if (kind==='lift'){ hiss(280,2200,.42,.18,1.5); tone(170,460,.36,.16,'triangle'); }
+    else if (kind==='plip'){ if (t-lastPlip<.09) return; lastPlip=t; tone(1500+Math.random()*500,600,.07,.1); }
+    else if (kind==='pour'){ hiss(600,1400,.5,.08,.6); }
+  }
+  return { resume, call, holdStart, holdStop, chime, fx, get ctx(){ return ctx; } };
+})();
+
+const unlockEvents = ['touchstart','touchend','pointerdown','pointerup','click','keydown'];
+function unlock(){
+  try {
+    const c = Sound.resume();
+    if (c.state === 'running') { unlockEvents.forEach(ev => removeEventListener(ev, unlock)); return; }
+    const b = c.createBuffer(1, 1, 22050), src = c.createBufferSource(); src.buffer = b; src.connect(c.destination); src.start(0);
+  } catch(e){}
+}
+unlockEvents.forEach(ev => addEventListener(ev, unlock, {passive:true}));
+
+$('#begin').addEventListener('click', () => { unlock(); try { Sound.chime(); } catch(e){} document.getElementById('dip').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); });
+
+/* ================= achievements ================= */
+const done = { dip:false, call:false, seed:false };
+const sweet = $('#sweet');
+const labels = { dip:'Dipped', call:'Sounded', seed:'Opened' };
+function achieve(key, title, msg){
+  if (done[key]) return;
+  done[key]=true;
+  $('#d-'+key).classList.add('on');
+  $('#cap-'+key).classList.add('show');
+  const n = Object.values(done).filter(Boolean).length;
+  $('#sweet-label').textContent = n===3 ? 'A sweet year, unlocked' : `${n} of 3 sweet things done`;
+  try { Sound.chime(); } catch(e){}
+  toast(title, msg + (n<3 ? ` ${n===1?'One':'Two'} down, ${3-n} to go.` : ''));
+  if (n===3) setTimeout(finale, 900);
+}
+let toastTimer;
+function toast(t, m){ $('#toast-t').textContent=t; $('#toast-m').textContent=m; $('#toast').classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>$('#toast').classList.remove('show'), 3200); }
+addEventListener('scroll', () => { sweet.classList.toggle('show', scrollY > innerHeight*.5); }, {passive:true});
+
+/* ================= scene visibility (pause off-screen canvases) ================= */
+const visible = new Map();
+const io = new IntersectionObserver(es => es.forEach(e => visible.set(e.target.id, e.isIntersecting)), {threshold:.05});
+['dip','call','seeds','cover'].forEach(id => io.observe(document.getElementById(id)));
+
+/* ================= SCENE 1: honey dip ================= */
+(() => { try {
+  const cv = $('#honey'), ctx = cv.getContext('2d');
+  let W,H,dpr;
+  const jar = {}, N = 72;
+  let wave = [];
+  const apple = { x:0,y:0,px:0,py:0,r:0,vx:0,vy:0,hx:0,hy:0,drag:false,dx:0,dy:0,glaze:0,coat:0,coatT:0,inHoney:false,maxDip:0,init:false,lastDrip:0 };
+  let strands=[], drops=[], hint=1, t=0, nameFx=null;
+  document.fonts.load('700 60px "Amatic SC"').catch(()=>{});
+  function resize(){
+    dpr=Math.min(2,devicePixelRatio||1); const r=cv.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    jar.w=Math.min(W*.66,300); jar.x=W/2; jar.top=H*.50; jar.bottom=H*.94; jar.h=jar.bottom-jar.top; jar.surface=jar.top+jar.h*.26; jar.l=jar.x-jar.w/2; jar.r=jar.x+jar.w/2;
+    apple.r=Math.min(W,H)*.115; apple.hx=W/2; apple.hy=H*.2;
+    if(!apple.init){ apple.x=apple.hx; apple.y=apple.hy; apple.init=true; }
+    wave=Array.from({length:N},()=>({y:0,v:0}));
+  }
+  resize(); addEventListener('resize',resize);
+  const surfAt = x => { const i=clamp(Math.round((x-jar.l)/jar.w*(N-1)),0,N-1); return jar.surface+wave[i].y; };
+  function disturb(x, v, rad){ v=clamp(v,-3,3); for(let i=0;i<N;i++){ const wx=jar.l+i/(N-1)*jar.w; const d=Math.abs(wx-x); if(d<rad) wave[i].v += v*(1-d/rad); } }
+  const L=new Float64Array(N), R=new Float64Array(N);
+  function stepWave(){
+    const cap=jar.h*.12;
+    for(const w of wave){ w.v += -0.025*w.y; w.y += w.v; w.v *= .975; }
+    for(let p=0;p<8;p++){
+      for(let i=0;i<N;i++){ if(i>0){ L[i]=.2*(wave[i].y-wave[i-1].y); wave[i-1].v+=L[i]; } if(i<N-1){ R[i]=.2*(wave[i].y-wave[i+1].y); wave[i+1].v+=R[i]; } }
+      for(let i=0;i<N;i++){ if(i>0) wave[i-1].y+=L[i]; if(i<N-1) wave[i+1].y+=R[i]; }
+    }
+    for(const w of wave){ w.y=clamp(w.y,-cap,cap); w.v=clamp(w.v,-cap/2,cap/2); }
+  }
+  /* pointer */
+  const pt = e => { const r=cv.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; };
+  cv.addEventListener('pointerdown', e => { const p=pt(e); if(Math.hypot(p.x-apple.x,p.y-apple.y) < apple.r*1.6){ apple.drag=true; apple.dx=apple.x-p.x; apple.dy=apple.y-p.y; cv.setPointerCapture(e.pointerId); cv.classList.add('grabbing'); hint=0; Sound.resume(); } });
+  cv.addEventListener('pointermove', e => { if(!apple.drag) return; const p=pt(e); apple.x=p.x+apple.dx; apple.y=p.y+apple.dy; });
+  // let the page scroll when the finger lands anywhere but the apple
+  cv.addEventListener('touchstart', e => { const r=cv.getBoundingClientRect(); const tc=e.touches[0]; if (tc && Math.hypot(tc.clientX-r.left-apple.x, tc.clientY-r.top-apple.y) < apple.r*1.6) e.preventDefault(); }, {passive:false});
+  cv.addEventListener('touchmove', e => { if (apple.drag) e.preventDefault(); }, {passive:false});
+  const release = () => { apple.drag=false; cv.classList.remove('grabbing'); };
+  cv.addEventListener('pointerup', release); cv.addEventListener('pointercancel', release);
+
+  function update(){
+    t++;
+    if(!apple.drag){ apple.vx += (apple.hx-apple.x)*.03; apple.vy += (apple.hy-apple.y)*.03; apple.vx*=.86; apple.vy*=.86; apple.x+=apple.vx; apple.y+=apple.vy; }
+    // keep inside canvas and inside the jar when low
+    apple.x = clamp(apple.x, apple.r, W-apple.r); apple.y = clamp(apple.y, apple.r*1.3, jar.bottom-apple.r*.9);
+    if (apple.y+apple.r > jar.top+10) apple.x = clamp(apple.x, jar.l+apple.r*.95, jar.r-apple.r*.95);
+    const velY = apple.y-apple.py, velX = apple.x-apple.px; apple.px=apple.x; apple.py=apple.y;
+    const bottom = apple.y+apple.r, surf = surfAt(apple.x);
+    const wasIn = apple.inHoney; apple.inHoney = bottom > surf;
+    if (!wasIn && apple.inHoney) { try { Sound.fx('plop', .7+Math.abs(velY)/6); if (navigator.vibrate) navigator.vibrate(30); } catch(e){} }
+    if (apple.inHoney){
+      const dip = bottom-surf; apple.maxDip=Math.max(apple.maxDip,dip);
+      if (Math.abs(velY)>.4 && dip < apple.r*1.6) disturb(apple.x, velY*.28, apple.r*1.3);
+      apple.coatT = Math.max(apple.coatT, Math.min(dip, apple.r*1.45));
+      apple.glaze = Math.max(apple.glaze, clamp(dip/(apple.r*1.4),0,1));
+    }
+    apple.coat += (apple.coatT-apple.coat)*.2;
+    if (wasIn && !apple.inHoney && apple.glaze>.25){
+      // lifting out: honey strands
+      for (let k=-1;k<=1;k++) strands.push({ox:k*apple.r*.45, fx:apple.x+k*apple.r*.45, w:6+apple.glaze*5, max:apple.r*(1.6+Math.random()*1.2)});
+      try { Sound.fx('lift'); } catch(e){}
+      if (apple.maxDip > apple.r*.9){ if (!nameFx) spawnName(); achieve('dip','Sweet!','The apple is dipped.'); }
+    }
+    if (!apple.inHoney && apple.maxDip>0 && bottom < jar.top) apple.maxDip = 0;
+    // strands
+    strands = strands.filter(s => {
+      const ax=apple.x+s.ox, ay=apple.y+apple.r*.92; s.fx = lerp(s.fx, ax, .04); const fy=surfAt(s.fx);
+      const d=Math.hypot(ax-s.fx, ay-fy); s.d=d; s.ay=ay; s.ax=ax; s.fy=fy;
+      if (d > s.max || apple.inHoney){ if(!apple.inHoney) drops.push({x:lerp(ax,s.fx,.6), y:lerp(ay,fy,.6), vy:0, r:3+Math.random()*2}); return false; } return true; });
+    // drips from glazed apple
+    if (apple.glaze>.5 && !apple.inHoney && t-apple.lastDrip > 70+Math.random()*120){ apple.lastDrip=t; drops.push({x:apple.x+(Math.random()-.5)*apple.r*1.2, y:apple.y+apple.r*.95, vy:0, r:2.5+Math.random()*2.5}); }
+    drops = drops.filter(dr => { dr.vy+=.35; dr.y+=dr.vy; if (dr.x>jar.l && dr.x<jar.r && dr.y >= surfAt(dr.x)){ disturb(dr.x, 2.2, 22); return false; } return dr.y < H+20; });
+    stepName();
+    stepWave();
+  }
+  function spawnName(){
+    const text = TO || 'Shana Tova';
+    const top = apple.hy+apple.r+8, bottom = jar.top-8, maxH = bottom-top, maxW = jar.w*1.1;
+    if (maxH < 36) return;
+    let size = Math.min(maxH*1.15, 96);
+    ctx.font = `700 ${size}px "Amatic SC", cursive`;
+    const tw = ctx.measureText(text).width; if (tw > maxW) size *= maxW/tw;
+    const oc=document.createElement('canvas'); oc.width=W; oc.height=H; const o=oc.getContext('2d');
+    o.font=`700 ${size}px "Amatic SC", cursive`; o.textAlign='center'; o.textBaseline='middle'; o.fillStyle='#000'; o.fillText(text, jar.x, (top+bottom)/2+size*.04);
+    const img=o.getImageData(0,0,W,H).data, pts=[], step = size>64 ? 3 : 2;
+    for(let y=0;y<H;y+=step) for(let x=0;x<W;x+=step) if(img[(y*W+x)*4+3]>128) pts.push({tx:x+(Math.random()-.5), ty:y+(Math.random()-.5)});
+    while (pts.length > 720) pts.splice(Math.random()*pts.length|0, 1);
+    if (!pts.length) return;
+    for (const q of pts){ q.sx=apple.x+(q.tx-jar.x)*.3; q.sy=apple.y+apple.r*.85; q.x=q.sx; q.y=q.sy; q.d=((q.tx-jar.l)/jar.w)*.35+Math.random()*.2; q.m=Math.random()*.7; q.vy=0; q.r=1.5+Math.random()*1.5; q.gone=false; }
+    nameFx = { pts, t0:t };
+    try { Sound.fx('pour'); } catch(e){}
+  }
+  function stepName(){
+    if (!nameFx) return;
+    const e=(t-nameFx.t0)/60; let alive=0;
+    for (const q of nameFx.pts){
+      if (q.gone) continue; alive++;
+      if (e < 1.1){ const u=clamp((e-q.d)/.55,0,1), k=u*u*(3-2*u); q.x=lerp(q.sx,q.tx,k); q.y=lerp(q.sy,q.ty,k)+Math.sin(u*Math.PI)*6; }
+      else if (e < 3.4){ q.x=q.tx; q.y=q.ty+Math.sin(t/9+q.tx*.2)*.5; }
+      else if (e-3.4 > q.m){ q.vy+=.28; q.y+=q.vy; q.x+=Math.sin(t/7+q.ty)*.15; if (q.y >= surfAt(q.x)){ q.gone=true; if (Math.random()<.12) disturb(q.x,1.2,14); } }
+    }
+    if (!alive) nameFx=null;
+  }
+  function drawName(){
+    if (!nameFx) return;
+    ctx.fillStyle='#EE9E12';
+    for (const q of nameFx.pts){ if (q.gone) continue; ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,6.28); ctx.fill(); }
+    ctx.fillStyle='rgba(255,225,140,.5)';
+    for (let i=0;i<nameFx.pts.length;i+=3){ const q=nameFx.pts[i]; if (q.gone) continue; ctx.beginPath(); ctx.arc(q.x-q.r*.3,q.y-q.r*.3,q.r*.4,0,6.28); ctx.fill(); }
+  }
+  function honeyPathInto(){
+    ctx.moveTo(jar.l, jar.bottom);
+    for(let i=0;i<N;i++){ ctx.lineTo(jar.l+i/(N-1)*jar.w, jar.surface+wave[i].y); }
+    ctx.lineTo(jar.r, jar.bottom); ctx.closePath();
+  }
+  function honeyPath(){
+    ctx.beginPath(); ctx.moveTo(jar.l, jar.bottom);
+    for(let i=0;i<N;i++){ ctx.lineTo(jar.l+i/(N-1)*jar.w, jar.surface+wave[i].y); }
+    ctx.lineTo(jar.r, jar.bottom); ctx.closePath();
+  }
+  function drawJar(){
+    const rr = 26;
+    // jar body (glass, back)
+    ctx.save();
+    ctx.beginPath(); ctx.roundRect(jar.l, jar.top, jar.w, jar.h, [10,10,rr,rr]); ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fill();
+    ctx.clip();
+    // honey
+    const g=ctx.createLinearGradient(0,jar.surface,0,jar.bottom); g.addColorStop(0,'#F9B93A'); g.addColorStop(.5,'#EE9E12'); g.addColorStop(1,'#B96D00');
+    honeyPath(); ctx.fillStyle=g; ctx.globalAlpha=.9; ctx.fill(); ctx.globalAlpha=1;
+    // surface sheen
+    ctx.beginPath(); for(let i=0;i<N;i++){ const x=jar.l+i/(N-1)*jar.w, y=jar.surface+wave[i].y; i?ctx.lineTo(x,y):ctx.moveTo(x,y); } ctx.strokeStyle='rgba(255,225,140,.9)'; ctx.lineWidth=3; ctx.stroke();
+    ctx.restore();
+  }
+  function drawJarFront(){
+    const rr = 26;
+    // glass highlights
+    ctx.save(); ctx.beginPath(); ctx.roundRect(jar.l, jar.top, jar.w, jar.h, [10,10,rr,rr]); ctx.clip();
+    ctx.fillStyle='rgba(255,255,255,.28)'; ctx.fillRect(jar.l+10, jar.top+14, 12, jar.h-40); ctx.fillStyle='rgba(255,255,255,.14)'; ctx.fillRect(jar.l+28, jar.top+14, 5, jar.h-40);
+    ctx.restore();
+    ctx.beginPath(); ctx.roundRect(jar.l, jar.top, jar.w, jar.h, [10,10,rr,rr]); ctx.strokeStyle='rgba(120,80,30,.35)'; ctx.lineWidth=3; ctx.stroke();
+    // rim
+    ctx.beginPath(); ctx.roundRect(jar.l-8, jar.top-14, jar.w+16, 20, 6); ctx.fillStyle='#E9D6B4'; ctx.fill(); ctx.strokeStyle='rgba(120,80,30,.35)'; ctx.lineWidth=2; ctx.stroke();
+    // label
+    const lw=jar.w*.55, lh=jar.h*.28, lx=jar.x-lw/2, ly=jar.surface+jar.h*.22;
+    ctx.fillStyle='#FFF6E5'; ctx.beginPath(); ctx.roundRect(lx,ly,lw,lh,6); ctx.fill(); ctx.strokeStyle='#C97C00'; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle='#8E1526'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.font=`700 ${Math.round(lh*.48)}px "Amatic SC", cursive`; ctx.fillText('דבש', jar.x, ly+lh*.36);
+    ctx.font=`800 ${Math.round(lh*.2)}px Nunito, sans-serif`; ctx.fillStyle='#6B5744'; ctx.fillText('HONEY · 5787', jar.x, ly+lh*.74);
+  }
+  function drawApple(withCoat=true){
+    const {x,y,r}=apple;
+    // shadow on honey if above jar
+    ctx.save();
+    const g=ctx.createRadialGradient(x-r*.35,y-r*.35,r*.1,x,y,r*1.05); g.addColorStop(0,'#FF6B6B'); g.addColorStop(.45,'#D62839'); g.addColorStop(1,'#7E1020');
+    ctx.beginPath(); ctx.moveTo(x-r*.15,y-r*.86); ctx.bezierCurveTo(x-r*.9,y-r*1.15,x-r*1.12,y+r*.1,x-r*.55,y+r*.85); ctx.bezierCurveTo(x-r*.25,y+r*1.1,x+r*.25,y+r*1.1,x+r*.55,y+r*.85); ctx.bezierCurveTo(x+r*1.12,y+r*.1,x+r*.9,y-r*1.15,x+r*.15,y-r*.86); ctx.bezierCurveTo(x+r*.05,y-r*.72,x-r*.05,y-r*.72,x-r*.15,y-r*.86); ctx.closePath();
+    ctx.fillStyle=g; ctx.fill();
+    if (withCoat && apple.coat>2){
+      ctx.save(); ctx.clip();
+      const top=y+r-apple.coat, wob=Math.sin(t/30)*1.5;
+      ctx.beginPath(); ctx.moveTo(x-r*1.2, top);
+      const seg=5; for(let i=0;i<seg;i++){ const x0=x-r*1.2+i*(r*2.4/seg), x1=x0+r*2.4/seg; ctx.quadraticCurveTo(x0+r*1.2/seg, top+r*(.22+.12*Math.sin(i*2.1+t/40))+wob, x1, top); }
+      ctx.lineTo(x+r*1.2,y+r*1.3); ctx.lineTo(x-r*1.2,y+r*1.3); ctx.closePath();
+      const hg=ctx.createLinearGradient(0,top,0,y+r); hg.addColorStop(0,'rgba(249,185,58,.82)'); hg.addColorStop(1,'rgba(201,124,0,.9)'); ctx.fillStyle=hg; ctx.fill();
+      ctx.strokeStyle='rgba(255,225,140,.85)'; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(x-r*.3,y+r*.45,r*.28,r*.1,-.4,0,6.28); ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fill();
+      ctx.restore();
+    }
+    // highlight
+    ctx.beginPath(); ctx.ellipse(x-r*.42,y-r*.42,r*.2,r*.11,-.7,0,6.28); ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fill();
+    // stem + leaf
+    ctx.strokeStyle='#5B3A1A'; ctx.lineWidth=r*.11; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(x,y-r*.78); ctx.quadraticCurveTo(x+r*.05,y-r*1.05,x+r*.16,y-r*1.28); ctx.stroke();
+    ctx.save(); ctx.translate(x+r*.42,y-r*1.02); ctx.rotate(-.55); ctx.beginPath(); ctx.ellipse(0,0,r*.36,r*.15,0,0,6.28); ctx.fillStyle='#4C8C4A'; ctx.fill(); ctx.strokeStyle='rgba(30,70,30,.5)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(-r*.3,0); ctx.lineTo(r*.3,0); ctx.stroke(); ctx.restore();
+    ctx.restore();
+  }
+  function drawStrands(){
+    for(const s of strands){
+      const stretch=clamp(s.d/s.max,0,1), w0=s.w*(1-stretch*.8)+1.2, cx=(s.ax+s.fx)/2, cy=(s.ay+s.fy)/2+s.d*.12;
+      const steps=8; let px=s.ax, py=s.ay;
+      for(let i=1;i<=steps;i++){ const u=i/steps, x=(1-u)*(1-u)*s.ax+2*(1-u)*u*cx+u*u*s.fx, y=(1-u)*(1-u)*s.ay+2*(1-u)*u*cy+u*u*s.fy;
+        ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(x,y); ctx.lineWidth=lerp(w0, w0*.35, u); ctx.strokeStyle='rgba(242,169,0,.95)'; ctx.lineCap='round'; ctx.stroke(); px=x; py=y; }
+    }
+    for(const d of drops){ ctx.beginPath(); ctx.moveTo(d.x,d.y-d.r*2.2); ctx.quadraticCurveTo(d.x+d.r*1.3,d.y,d.x,d.y+d.r); ctx.quadraticCurveTo(d.x-d.r*1.3,d.y,d.x,d.y-d.r*2.2); ctx.fillStyle='#EE9E12'; ctx.fill(); }
+  }
+  function drawHint(){
+    if (hint<=0) return; hint=Math.max(0,hint-.003);
+    const a=hint*(0.55+0.45*Math.sin(t/14));
+    ctx.save(); ctx.globalAlpha=a; ctx.strokeStyle='#8E1526'; ctx.lineWidth=2; ctx.setLineDash([6,6]);
+    ctx.beginPath(); ctx.moveTo(apple.x+apple.r*1.5, apple.y+apple.r*.6); ctx.quadraticCurveTo(apple.x+apple.r*2.2, jar.top-20, apple.x+apple.r*1.1, jar.surface-10); ctx.stroke();
+    ctx.setLineDash([]); ctx.beginPath(); ctx.moveTo(apple.x+apple.r*1.1, jar.surface-4); ctx.lineTo(apple.x+apple.r*.85, jar.surface-22); ctx.lineTo(apple.x+apple.r*1.4, jar.surface-24); ctx.closePath(); ctx.fillStyle='#8E1526'; ctx.fill();
+    ctx.font='700 22px "Amatic SC", cursive'; ctx.fillStyle='#8E1526'; ctx.textAlign='left'; ctx.fillText('drag me', apple.x+apple.r*1.55, apple.y-apple.r*.2);
+    ctx.restore();
+  }
+  function frame(){
+    if (visible.get('dip') !== false){
+      update();
+      ctx.clearRect(0,0,W,H);
+      // soft shadow under jar
+      ctx.beginPath(); ctx.ellipse(jar.x, jar.bottom+6, jar.w*.55, 10, 0, 0, 6.28); ctx.fillStyle='rgba(42,30,20,.12)'; ctx.fill();
+      drawJar();
+      if (apple.inHoney){
+        // the submerged part, seen through the honey
+        ctx.save(); honeyPath(); ctx.clip(); ctx.globalAlpha=.55; drawApple(false); ctx.globalAlpha=1;
+        honeyPath(); ctx.fillStyle='rgba(238,158,18,.42)'; ctx.fill(); ctx.restore();
+        // the part above the surface, crisp, with its coat
+        ctx.save(); ctx.beginPath(); ctx.rect(0,0,W,H); honeyPathInto(); ctx.clip('evenodd'); drawApple(true); ctx.restore();
+        // meniscus where the apple meets the honey
+        const sy=surfAt(apple.x), dy=sy-apple.y, half=Math.sqrt(Math.max(0,apple.r*apple.r-dy*dy));
+        if (half>4){ ctx.beginPath(); ctx.ellipse(apple.x, sy, half+5, 4, 0, 0, 6.28); ctx.strokeStyle='rgba(255,225,140,.9)'; ctx.lineWidth=2.5; ctx.stroke(); }
+      } else drawApple(true);
+      drawJarFront(); drawStrands(); drawName(); drawHint();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+} catch(err){ console.error('honey scene', err); } })();
+
+/* ================= SCENE 2: shofar ================= */
+(() => {
+  const wrap=$('#horn-wrap'); let playTimer;
+  function playing(len){ wrap.classList.add('playing'); clearTimeout(playTimer); if (isFinite(len)) playTimer=setTimeout(()=>wrap.classList.remove('playing'), len*1000); }
+  function stopVis(){ wrap.classList.remove('playing'); }
+  document.querySelectorAll('[data-call]').forEach(b => b.addEventListener('click', () => { const len=Sound.call(b.dataset.call); playing(len); achieve('call','Tekiah!','The shofar is sounded.'); }));
+  const ged=$('#gedolah'); let holding=false;
+  const start = e => { e.preventDefault(); if (holding) return; holding=true; Sound.holdStart(); playing(Infinity); if (ged.setPointerCapture) ged.setPointerCapture(e.pointerId); };
+  const stop = () => { if(!holding) return; holding=false; Sound.holdStop(); stopVis(); achieve('call','Tekiah Gedolah!','A great blast.'); };
+  ged.addEventListener('pointerdown', start); ged.addEventListener('pointerup', stop); ged.addEventListener('pointercancel', stop); ged.addEventListener('pointerleave', stop);
+  ged.addEventListener('keydown', e => { if (e.key===' '||e.key==='Enter'){ e.preventDefault(); if(!holding){ holding=true; Sound.holdStart(); playing(Infinity);} } });
+  ged.addEventListener('keyup', stop);
+
+})();
+
+/* ================= SCENE 3: pomegranate → 613 seeds ================= */
+(() => {
+  const cv=$('#pome'), ctx=cv.getContext('2d'); let W,H,dpr;
+  const COUNT=613; const seeds=[]; let state='whole', scale=1, t0=0, phase=0, targets=[];
+  const WORDS=['5787','שנה טובה','5787','ומתוקה'];
+  function resize(){ dpr=Math.min(2,devicePixelRatio||1); const r=cv.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); if(state!=='whole') targets=sample(WORDS[phase%WORDS.length]); }
+  resize(); addEventListener('resize',resize);
+  for(let i=0;i<COUNT;i++) seeds.push({x:0,y:0,vx:0,vy:0,tx:0,ty:0,a:Math.random()*6.28,r:2.6+Math.random()*1.4,h:Math.random()});
+  function sample(word){
+    const oc=document.createElement('canvas'); oc.width=W; oc.height=H; const o=oc.getContext('2d');
+    const heb=/[\u0590-\u05FF]/.test(word);
+    let size = heb ? Math.min(H*.62, W/word.length*1.9) : Math.min(H*.7, W/word.length*1.5);
+    o.font=`${heb?700:600} ${size}px ${heb?'"Amatic SC", cursive':'Fraunces, Georgia, serif'}`; o.textAlign='center'; o.textBaseline='middle'; o.fillStyle='#000'; o.fillText(word, W/2, H/2);
+    const img=o.getImageData(0,0,W,H).data; const pts=[]; const step=2;
+    for(let y=0;y<H;y+=step) for(let x=0;x<W;x+=step) if(img[(y*W+x)*4+3]>128) pts.push([x,y]);
+    for(let i=pts.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [pts[i],pts[j]]=[pts[j],pts[i]]; }
+    const out=[]; for(let i=0;i<COUNT;i++){ const p=pts[i%pts.length]||[W/2,H/2]; out.push([p[0]+(Math.random()-.5)*2, p[1]+(Math.random()-.5)*2]); }
+    return out;
+  }
+  function burst(){
+    state='burst'; t0=performance.now(); phase=0;
+    for(const s of seeds){ const a=Math.random()*6.28, sp=3+Math.random()*9; s.x=W/2+(Math.random()-.5)*20; s.y=H/2+(Math.random()-.5)*20; s.vx=Math.cos(a)*sp; s.vy=Math.sin(a)*sp-3; }
+    Promise.all([document.fonts.load('700 100px "Amatic SC"'), document.fonts.load('600 100px Fraunces')]).catch(()=>{}).finally(()=>{ targets=sample(WORDS[0]); assign(); });
+    achieve('seed','613!','The pomegranate is open.');
+  }
+  function assign(){ seeds.forEach((s,i)=>{ s.tx=targets[i][0]; s.ty=targets[i][1]; }); }
+  function reset(){ state='gather'; t0=performance.now(); }
+  cv.addEventListener('click', () => { Sound.resume(); if(state==='whole') burst(); else if(state==='text') reset(); });
+  function drawFruit(cx,cy,r){
+    ctx.save(); ctx.translate(cx,cy);
+    const g=ctx.createRadialGradient(-r*.3,-r*.3,r*.1,0,0,r*1.05); g.addColorStop(0,'#F05A78'); g.addColorStop(.5,'#C4183F'); g.addColorStop(1,'#7A0E2A');
+    ctx.beginPath(); ctx.arc(0,0,r,0,6.28); ctx.fillStyle=g; ctx.fill();
+    // crown
+    ctx.beginPath(); ctx.moveTo(-r*.28,-r*.92); ctx.lineTo(-r*.34,-r*1.25); ctx.lineTo(-r*.12,-r*1.12); ctx.lineTo(0,-r*1.35); ctx.lineTo(r*.12,-r*1.12); ctx.lineTo(r*.34,-r*1.25); ctx.lineTo(r*.28,-r*.92); ctx.closePath(); ctx.fillStyle='#8E1526'; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(-r*.4,-r*.42,r*.2,r*.1,-.7,0,6.28); ctx.fillStyle='rgba(255,255,255,.4)'; ctx.fill();
+    ctx.save(); ctx.translate(r*.45,-r*1.05); ctx.rotate(.4); ctx.beginPath(); ctx.ellipse(0,0,r*.32,r*.13,0,0,6.28); ctx.fillStyle='#4C8C4A'; ctx.fill(); ctx.restore();
+    ctx.restore();
+  }
+  function drawSeed(s){
+    ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(s.a);
+    ctx.beginPath(); ctx.ellipse(0,0,s.r*1.25,s.r,0,0,6.28); ctx.fillStyle = s.h<.5 ? '#C4183F' : '#E63963'; ctx.fill();
+    ctx.beginPath(); ctx.arc(-s.r*.4,-s.r*.35,s.r*.35,0,6.28); ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fill();
+    ctx.restore();
+  }
+  function frame(now){
+    if (visible.get('seeds') !== false){
+      ctx.clearRect(0,0,W,H);
+      const R=Math.min(H*.24, W*.2);
+      if (state==='whole'){
+        const pulse = reduced?1:1+Math.sin(now/500)*.025;
+        drawFruit(W/2,H/2+10,R*pulse);
+        ctx.font='700 26px "Amatic SC", cursive'; ctx.fillStyle='#8E1526'; ctx.textAlign='center'; ctx.fillText('tap me', W/2, H/2+R*1.55);
+      } else if (state==='burst'){
+        const e=(now-t0)/1000;
+        if (e<.35) drawFruit(W/2,H/2+10,R*(1-e/.35));
+        for(const s of seeds){ s.vy+=.12; s.vx*=.985; s.vy*=.985; s.x+=s.vx; s.y+=s.vy; s.a+=s.vx*.05; drawSeed(s); }
+        if (e>1.1 && targets.length){ state='text'; t0=now; }
+      } else if (state==='text'){
+        const e=(now-t0)/1000;
+        if (e>3.2){ phase++; targets=sample(WORDS[phase%WORDS.length]); assign(); t0=now; }
+        for(const s of seeds){ s.x+=(s.tx-s.x)*.09; s.y+=(s.ty-s.y)*.09; s.a+=.02; s.x+=Math.sin(now/400+s.h*6)*.25; s.y+=Math.cos(now/460+s.h*6)*.25; drawSeed(s); }
+        ctx.font='800 12px Nunito, sans-serif'; ctx.fillStyle='#A38F78'; ctx.textAlign='center'; ctx.fillText('TAP TO PUT THEM BACK', W/2, H-14);
+      } else if (state==='gather'){
+        const e=(now-t0)/1000; let close=0;
+        for(const s of seeds){ s.x+=(W/2-s.x)*.12; s.y+=(H/2+10-s.y)*.12; if(Math.hypot(W/2-s.x,H/2+10-s.y)<R*.6) close++; drawSeed(s); }
+        drawFruit(W/2,H/2+10,R*clamp(close/COUNT,0,1));
+        if (e>1.2){ state='whole'; }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ================= finale confetti ================= */
+function finale(){
+  const cv=$('#confetti'), ctx=cv.getContext('2d'); const W=cv.width=innerWidth, H=cv.height=innerHeight;
+  const glyphs=['🍎','🍯','🍐','⭐','🍎','🍯']; const ps=Array.from({length:reduced?30:90},()=>({x:Math.random()*W,y:-40-Math.random()*H,vy:2+Math.random()*3,vx:(Math.random()-.5)*1.5,g:glyphs[Math.random()*glyphs.length|0],a:Math.random()*6.28,va:(Math.random()-.5)*.1,s:22+Math.random()*18}));
+  const t0=performance.now();
+  (function f(now){ ctx.clearRect(0,0,W,H); let alive=0;
+    for(const p of ps){ p.y+=p.vy; p.x+=p.vx+Math.sin(now/300+p.a)*.6; p.a+=p.va; if(p.y<H+40) alive++; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a); ctx.font=`${p.s}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(p.g,0,0); ctx.restore(); }
+    if (alive && now-t0<9000) requestAnimationFrame(f); else ctx.clearRect(0,0,W,H); })(t0);
+  toast('Shana Tova!', 'All three done. A sweet year is yours.');
+}
+})();
+</script>
+
+</body>
+</html>
