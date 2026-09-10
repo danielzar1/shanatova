@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-aeQobHuDEEXDA65X26K+V+GyRYY0v5LDrcAiyohK2oQ='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qth+fAd5a/+7KEdD4jpr8hsnb5jDZC5JTZPdjDUqU5M='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#241738">
@@ -410,15 +410,25 @@ const Sound = (() => {
     if (kind==='plop'){
       if (t-lastPlop<.3) return; lastPlop=t;
       const p=clamp(power,.6,1.6);
-      tone(170,48,.34,.9*p);                                   // deep thump
-      const o=c.createOscillator(); o.type='sine';              // wet gloop sliding down
-      o.frequency.setValueAtTime(560,t); o.frequency.exponentialRampToValueAtTime(120,t+.24);
-      const bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=7; bp.frequency.setValueAtTime(760,t); bp.frequency.exponentialRampToValueAtTime(180,t+.26);
-      const g=c.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.7*p,t+.01); g.gain.exponentialRampToValueAtTime(.0008,t+.32);
-      o.connect(bp); bp.connect(g); g.connect(master); o.start(t); o.stop(t+.4);
-      hiss(2600,320,.3,.4*p,.9);                                // splash
-      tone(1100,420,.07,.22*p,'sine',.14);                      // bubble
-      tone(800,300,.06,.14*p,'sine',.23);
+      // impact: a crisp high burst a phone speaker reproduces well
+      hiss(4200,1400,.06,.6*p,1.4);
+      // the "bloop": pitch rises then falls, like a real drop into liquid (mid range, clearly audible on phones)
+      const o=c.createOscillator(); o.type='sine';
+      o.frequency.setValueAtTime(380,t); o.frequency.exponentialRampToValueAtTime(1150,t+.11); o.frequency.exponentialRampToValueAtTime(330,t+.24);
+      const g=c.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.7*p,t+.012); g.gain.exponentialRampToValueAtTime(.0008,t+.34);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+.4);
+      // wet gloop, kept in the mid band
+      const o2=c.createOscillator(); o2.type='triangle';
+      o2.frequency.setValueAtTime(900,t); o2.frequency.exponentialRampToValueAtTime(260,t+.22);
+      const bp=c.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=5; bp.frequency.setValueAtTime(1100,t); bp.frequency.exponentialRampToValueAtTime(320,t+.24);
+      const g2=c.createGain(); g2.gain.setValueAtTime(0,t); g2.gain.linearRampToValueAtTime(.55*p,t+.01); g2.gain.exponentialRampToValueAtTime(.0008,t+.3);
+      o2.connect(bp); bp.connect(g2); g2.connect(master); o2.start(t); o2.stop(t+.4);
+      // splash of noise in the audible band, then two little bubbles
+      hiss(3000,650,.3,.5*p,.9);
+      tone(1400,600,.07,.3*p,'sine',.14);
+      tone(1000,450,.06,.22*p,'sine',.23);
+      // deep thump underneath for desktops and headphones (phone speakers ignore it)
+      tone(170,48,.34,.9*p);
     }
     else if (kind==='lift'){ hiss(280,2200,.42,.18,1.5); tone(170,460,.36,.16,'triangle'); }
     else if (kind==='plip'){ if (t-lastPlip<.09) return; lastPlip=t; tone(1500+Math.random()*500,600,.07,.1); }
